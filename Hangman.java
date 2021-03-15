@@ -4,9 +4,69 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 
 
-	public class Hangman {
+
+
+	public class Hangman extends JFrame {
+		 drawHangman (String name)
+        {
+                super(name);
+                setSize (500, 500); 
+                setVisible (true);
+                setDefaultCloseOperation (EXIT_ON_CLOSE);
+
+        }
+		 public void paint (Graphics g)
+        {
+                Dimension d = getSize (); 
+                g.setColor (Color.BLACK); //white board 
+               // Draw gibbet
+		g.drawLine(100, 300, 100, 50);
+		g.drawLine(200, 50, 100, 50);
+		g.drawLine(200, 100, 200, 50);
+
+	}
+		
+		public void incorrectPaint(int attempt) { 
+			switch(attempt) {
+				case 1:
+				   
+		       g.drawLine(200, 200, 150, 250);
+				   break;
+				case 2:
+				    
+		       g.drawLine(200, 200, 250, 250); 
+				   break;
+				case 3:
+				    
+		       g.drawLine(150, 150, 200, 175);
+				   break;
+				case 4:
+				    
+		       g.drawLine(250, 150, 200, 175); 
+				   break;
+				case 5:
+				    
+		       g.drawLine(200, 200, 200, 175); 
+				   break;
+				case 6:
+				    
+		       g.drawLine(200, 150, 200, 175); 
+				   break;
+				case 7:
+				    
+		       g.drawOval(175, 100, 50, 50);
+				   break;
+				default:
+					System.out.println("internal error: incorrect input");
+				    // code block
+}
+		}
+			
     	public static void main(String[] args) {
 
 		Scanner reader = new Scanner(System.in);
@@ -30,7 +90,9 @@ import javax.swing.JPanel;
     int attempt = 7;
     String wordsFound="";
     boolean some = true;
-    
+		
+		
+		
 	while (!finalSolved){
 	for (int i = 0; i < input.length(); i++)
         {
@@ -77,6 +139,7 @@ import javax.swing.JPanel;
 	}
 	if (!aw) {
 	System.out.println("Incorrect guess"); 
+	incorrectPaint(attempt);
 	attempt--;
 	}
 	else {System.out.println("You have guessed correct!");}

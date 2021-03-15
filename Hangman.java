@@ -61,16 +61,19 @@ public class Hangman extends JFrame {
         String wordsFound = "";
         boolean some = true;
         
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame() {
+            @Override
+            public void paint(Graphics g) {
+                super.paint(g);
+                g.setColor(Color.BLACK);
+                g.drawLine(100, 300, 100, 50);
+                g.drawLine(200, 50, 100, 50);
+                g.drawLine(200, 100, 200, 50);
+            }
+        };
         frame.setVisible(true);
         frame.setSize(400, 400);
         Graphics g = frame.getGraphics();
-        
-        g.setColor(Color.BLACK); 
-        g.drawLine(100, 300, 100, 50);
-        g.drawLine(200, 50, 100, 50);
-        g.drawLine(200, 100, 200, 50);
-        
         
         while (!finalSolved) {
           for (int i = 0; i < input.length(); i++) {

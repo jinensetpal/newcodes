@@ -1,0 +1,102 @@
+import java.util.Scanner;
+import java.util.Random;
+import java.util.ArrayList;
+
+	public class Hangman {
+    	public static void main(String[] args) {
+
+		Scanner reader = new Scanner(System.in);
+
+		while (true) {
+	System.out.print("User 1, enter a word between 4 and 8 characters long: ");
+	
+	String input = reader.nextLine();
+	if (input.length() < 3) {  
+	System.out.println("Word is too short ");
+        System.out.println("Please re-enter");
+        continue;
+      	}
+      else if (input.length() > 9) {
+      System.out.println("word is too long");
+      System.out.println("please re-enter");
+      }
+	else {
+    input = input.toUpperCase();
+    }
+   
+   
+   \\drawing of the hangman
+   import java.awt.*;
+        import java.awt.geom.*;
+        import javax.swing.*;
+
+        public class drawHangman extends JPanel 
+        {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = -3924721752542320241L;
+
+        public void paintComponent (Graphics comp)
+        {
+            Graphics2D comp2D = (Graphics2D) comp;
+            comp2D.setColor(Color.white);
+            comp2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+            Rectangle2D.Float background = new Rectangle2D.Float(0F,0F,400,600/*(float)getSize().width,(float)getSize().height*/);
+                comp2D.fill(background);
+        
+            //setting for colour etc
+            comp2D.setColor(Color.black);
+            BasicStroke pen = new BasicStroke(2.0f,BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND);
+            comp2D.setStroke(pen);      
+        
+            int livesRemaining = 10;
+            switch (livesRemaining)
+            {
+            case 9:
+                Line2D.Float gallowsBase = new Line2D.Float(50F,500F,500F,500F);
+                comp2D.draw(gallowsBase); 
+                break;
+            case 8:   
+                Line2D.Float gallowsVertical = new Line2D.Float(150F,500F,150F,100F);
+                comp2D.draw(gallowsVertical);
+                break;
+            case 7:
+                Line2D.Float gallowsTop = new Line2D.Float(150F,100F,400F,100F);
+                comp2D.draw(gallowsTop);
+                break;
+            case 6:
+                Line2D.Float rope = new Line2D.Float(400F,100F,400F,150F);
+                comp2D.draw(rope);
+                break;
+            case 5:
+                Ellipse2D.Float head = new Ellipse2D.Float(362F,150F,76F,76F);
+                comp2D.draw(head); 
+                break;
+            case 4:
+                Line2D.Float body = new Line2D.Float(400F,226F,400F,325F);
+                comp2D.draw(body);
+                break;
+            case 3:
+                Line2D.Float arm1 = new Line2D.Float(400F,226F,300F,275F);
+                comp2D.draw(arm1);
+                break;
+            case 2:
+                    Line2D.Float arm2 = new Line2D.Float(400F,226F,500F,275F);
+                comp2D.draw(arm2);
+                break;
+            case 1:
+                Line2D.Float leg1 = new Line2D.Float(400F,325F,300F,400F);
+                comp2D.draw(leg1);
+                break;
+            case 0:
+                Line2D.Float leg2 = new Line2D.Float(400F,325F,500F,400F);
+                comp2D.draw(leg2);
+                /*youLosePopup lose = new youLosePopup();*/
+            }    
+        }
+        /*public static void main (String[] args)
+        {
+            drawHangman draw = new drawHangman(); 
+        }*/
+    }
